@@ -132,6 +132,7 @@
             $("#txtArchivo").val(""); 
             $("#perfil_id").val(result["id"]); 
             $("#frm_nuevo").show(); 
+            $("#txtCodigo").focus(); 
         });
     }
 

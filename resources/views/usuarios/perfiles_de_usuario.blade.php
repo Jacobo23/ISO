@@ -138,6 +138,8 @@
             $("#txtTipo").val(result["tipo"]); 
             $("#chkActivo").prop('checked', result["activo"]);
             $("#frm_nuevo").show(); 
+            $("#txtUser").focus(); 
+
         });
     }
 
