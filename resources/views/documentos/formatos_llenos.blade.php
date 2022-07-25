@@ -75,6 +75,17 @@
 
             <h5 class="separtor">Registros</h5>
 
+            <div class="row">
+                <div class="col-lg-8">
+                </div>
+
+                <div class="col-lg-4 controlDiv" >
+                    <label class="form-label">Buscar:</label>
+                    <input type="text" class="form-control" id="txtQuickSearch" placeholder="Busca rapida" onkeyup="filtrar()"/>   
+                </div>
+            </div>
+            <br>
+
             <table class="table tbl-reg table-sm table-hover">
                 <thead>
                     <tr>
@@ -89,7 +100,7 @@
                     <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbl_formatos">
                     @foreach ($formatos_llenos as $formato)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
@@ -201,6 +212,17 @@
     {
         var html = $("#"+content_row).html();  
         showModal("Adjuntos",html.replace(/src_aux/g, "src"));
+    }
+    function filtrar()
+    {
+        var value = $("#txtQuickSearch").val().toLowerCase();
+        
+        $("#tbl_formatos tr").filter(function() 
+        {
+            $(this).toggle(
+                    $(this).text().toLowerCase().indexOf(value) > -1 
+                )
+        });
     }
 
 

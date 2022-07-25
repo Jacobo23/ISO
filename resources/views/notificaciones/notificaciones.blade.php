@@ -17,7 +17,10 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
 
+            @if ($nivel > 1) 
             <button class="btn btn-success" onclick="verForm()" >Nuevo <i class="fa-solid fa-plus"></i></button>
+            @endif
+
             <br>
             <div id="frm_nuevo" style="display:none;">
 

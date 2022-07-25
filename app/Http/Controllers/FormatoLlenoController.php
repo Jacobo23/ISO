@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\FormatoLleno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Documento;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class FormatoLlenoController extends Controller
 {
@@ -16,7 +19,20 @@ class FormatoLlenoController extends Controller
     public function index()
     {
         //
-        $formatos_llenos = FormatoLleno::all();        
+        //$formatos_llenos = FormatoLleno::all(); // solo deben aparecer los formatos de los que el usuario sea responsable
+
+        //obtener un array de los codigo de formato de los que eres responsable
+        $usuario_logeado = Auth::user();
+        if($usuario_logeado->tipo == "Administrador")
+        {
+            $formatos_llenos = FormatoLleno::all();
+        }
+        else
+        {
+            $codigos = Documento::where('responsable_id',$usuario_logeado->id)->pluck('codigo');
+            $formatos_llenos = FormatoLleno::whereIn('codigo',$codigos)->get();
+        }
+        
         return view('documentos.formatos_llenos', [
             'formatos_llenos' => $formatos_llenos
         ]);

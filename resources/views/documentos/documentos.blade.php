@@ -146,7 +146,7 @@
 
                 <div class="col-lg-4 controlDiv" >
                     <label class="form-label">Buscar:</label>
-                    <input type="text" class="form-control" id="txtQuickSearch" placeholder="Busca rapida" onkeyup="filtrar()">   
+                    <input type="text" class="form-control" id="txtQuickSearch" placeholder="Busca rapida" onkeyup="filtrar()"/>   
                 </div>
             </div>
             <br>
@@ -169,10 +169,10 @@
                     <th scope="col">Modificable</th>
                     @endif
                     <th scope="col">No-Imprimir</th>
-                    @if ($nivel > 1) 
+                    @if ($nivel == 3) 
                     <th scope="col">Editar</th>
                     @endif
-                    @if ($nivel > 1) 
+                    @if ($nivel == 3) 
                     <th scope="col">Eliminar</th>
                     @endif
                     </tr>
@@ -195,10 +195,10 @@
                             @if ($documento->path_modificable())<td><a href="/documentos/documentos_view_mod/{{ $documento->id }}"><i style="color: #CCC;font-size:35px;" class="fa-solid fa-file-signature"></i></a></td> @else<td></td>@endif
                         @endif
                         @if ($documento->path_marca_de_agua())<td><a href="/documentos/documentos_view_wmk/{{ $documento->id }}"><i style="color: #CCC;font-size:35px;" class="fa-solid fa-file-circle-exclamation"></i></a></td> @else<td></td>@endif
-                        @if ($nivel > 1) 
+                        @if ( $nivel == 3) 
                         <td><button class="btn btn-success" onclick="editar({{ $documento->id }})"><i class="fa-solid fa-pen-to-square"></i></button></td>
                         @endif
-                        @if ($nivel > 1) 
+                        @if ( $nivel == 3) 
                         <td><button class="btn btn-success" onclick="eliminar({{ $documento->id }})"><i class="fa-solid fa-xmark"></i></button></td>
                         @endif
                     </tr>

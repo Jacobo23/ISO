@@ -31,7 +31,8 @@ class NotificationController extends Controller
         return view('notificaciones.notificaciones', [
             'notificaciones' => $notificaciones,
             'usuarios' => $usuarios,
-            'perfiles' => $perfiles
+            'perfiles' => $perfiles,
+            'nivel' => $nivel
         ]);
     }
     public function getUsuariosPorPerfil($perfil)

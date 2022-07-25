@@ -25,10 +25,10 @@ Route::get('/inicio/actas_de_reunion_view/{acta_de_reunion}','ActaDeReunionContr
 Route::get('/inicio/nosotros','NosotrosController@index')->middleware(['auth']);
 
 // Pestaña USUARIOS
-Route::get('/usuarios/perfiles_de_usuario','UsersController@index')->middleware(['auth']);
-Route::post('/usuarios/perfiles_de_usuario_guardar','UsersController@store')->middleware(['auth']);
-Route::get('/usuarios/perfiles_de_usuario/{user}','UsersController@show')->middleware(['auth']);
-Route::get('/usuarios/perfiles_de_usuario_delete/{user}','UsersController@destroy')->middleware(['auth']);
+Route::get('/usuarios/perfiles_de_usuario','UsersController@index')->middleware(['auth','allow.only:Administrador']);
+Route::post('/usuarios/perfiles_de_usuario_guardar','UsersController@store')->middleware(['auth','allow.only:Administrador']);
+Route::get('/usuarios/perfiles_de_usuario/{user}','UsersController@show')->middleware(['auth','allow.only:Administrador']);
+Route::get('/usuarios/perfiles_de_usuario_delete/{user}','UsersController@destroy')->middleware(['auth','allow.only:Administrador']);
 Route::get('/prohibido','UsersController@prohibido')->middleware(['auth']);
 
 // Pestaña DOCUMENTOS

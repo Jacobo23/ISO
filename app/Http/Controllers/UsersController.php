@@ -50,7 +50,6 @@ class UsersController extends Controller
         if($registro) // en caso de ser update
         {
             $registro->email = $request->txtEmail;
-            $registro->password = "";
             $registro->perfil = $request->txtPerfil;
             $registro->tipo = $request->txtTipo;
             $registro->activo = isset($request->chkActivo);

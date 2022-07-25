@@ -20,6 +20,7 @@ class DocumentoController extends Controller
         $usuarios = User::where('tipo','Responsable')->orWhere('tipo','Administrador')->get();
         $documentos = Documento::all();
         $nivel = Auth::user()->getUserNivel();
+        $usuario_logeado = Auth::user();
         //$directorios = Storage::allDirectories("public");
         // $directorios = [
         //     "Actas_de_Reunion",
@@ -34,7 +35,8 @@ class DocumentoController extends Controller
         return view('documentos.documentos', [
             'usuarios' => $usuarios,
             'documentos' => $documentos,
-            'nivel' => $nivel
+            'nivel' => $nivel,
+            'usuario_logeado' => $usuario_logeado
         ]);
     }
 

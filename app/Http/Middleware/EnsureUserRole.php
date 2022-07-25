@@ -23,7 +23,7 @@ class EnsureUserRole
         $requerido = User::getNivel($role);
         if ($nivel < $requerido) 
         {
-            return redirect('/prohibido');//en este punto el usuario ya debe estar autenticado pero no tiene permiso para entrar, por eso se le redirige a home y no a login
+            return redirect('/');//en este punto el usuario ya debe estar autenticado pero no tiene permiso para entrar, por eso se le redirige a home y no a login
         }
         return $next($request);
     }
