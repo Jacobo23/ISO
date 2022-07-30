@@ -69,8 +69,10 @@
                     <th scope="col">Revisión</th>
                     <th scope="col">Fecha</th>
                     <th scope="col"><i class="fa-solid fa-download"></i></th>
+                     @if ( $nivel == 3) 
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -82,8 +84,10 @@
                         <td>{{ $perfil->rev }}</td>
                         <td>{{ $perfil->fecha }}</td>
                         <td><a href="/liderazgo/perfiles_de_puesto_view/{{ $perfil->id }}"><i style="color: #CCC;font-size:35px;" class="fa-solid fa-file-pdf"></i></a></td>
+                         @if ( $nivel == 3) 
                         <td><button class="btn btn-success" onclick="editar({{ $perfil->id }})"><i class="fa-solid fa-pen-to-square"></i></button></td>
                         <td><button class="btn btn-success" onclick="eliminar({{ $perfil->id }})"><i class="fa-solid fa-xmark"></i></button></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

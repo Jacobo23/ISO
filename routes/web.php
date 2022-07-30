@@ -49,9 +49,9 @@ Route::get('/documentos/formatos_llenos_view/{formato}','FormatoLlenoController@
 
 // Pestaña LIDERAZGO
 Route::get('/liderazgo/perfiles_de_puesto','PerfilDePuestoController@index')->middleware(['auth']);
-Route::post('/liderazgo/perfiles_de_puesto_guardar','PerfilDePuestoController@store')->middleware(['auth']);
-Route::get('/liderazgo/perfiles_de_puesto/{perfil}','PerfilDePuestoController@show')->middleware(['auth']);
-Route::get('/liderazgo/perfiles_de_puesto_delete/{perfil}','PerfilDePuestoController@destroy')->middleware(['auth']);
+Route::post('/liderazgo/perfiles_de_puesto_guardar','PerfilDePuestoController@store')->middleware(['auth','allow.only:Administrador']);
+Route::get('/liderazgo/perfiles_de_puesto/{perfil}','PerfilDePuestoController@show')->middleware(['auth','allow.only:Administrador']);
+Route::get('/liderazgo/perfiles_de_puesto_delete/{perfil}','PerfilDePuestoController@destroy')->middleware(['auth','allow.only:Administrador']);
 Route::get('/liderazgo/perfiles_de_puesto_view/{perfil}','PerfilDePuestoController@viewPerfilDePuesto')->middleware(['auth']);
 
 // Pestaña NOTIFICACIONES
