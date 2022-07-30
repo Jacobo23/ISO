@@ -17,8 +17,11 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
 
+             @if ( $nivel > 1) 
+
             <button class="btn btn-success" onclick="verForm()" >Nuevo <i class="fa-solid fa-plus"></i></button>
             <br>
+            @endif
             <div id="frm_nuevo" style="display:none;">
 
                 <form action="/documentos/formatos_llenos_guardar" method="post" enctype="multipart/form-data">
@@ -96,8 +99,10 @@
                     <th scope="col">Fecha</th>
                     <th scope="col"><i class="fa-solid fa-download"></i></th>
                     <th scope="col"><i class="fa-solid fa-download"></i></th>
+                    @if ( $nivel > 1) 
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody id="tbl_formatos">
@@ -109,6 +114,7 @@
                         <td>{{ $formato->descripcion }}</td>
                         <td>{{ $formato->fecha }}</td>
                         <td><a href="/documentos/formatos_llenos_view/{{ $formato->id }}"><i style="color: #CCC;font-size:35px;" class="fa-solid fa-file-pdf"></i></a></td>
+                        
                         <td id="adjuntos_btn_{{ $formato->id }}" ><button type="button" class="btn btn-light" onclick="showAdjuntos('adjuntos_formato_{{ $formato->id }}')"><i class="far fa-folder-open"></i></button></td>
                         <td id="adjuntos_formato_{{ $formato->id }}" class="td_adjuntos" style="display:none">
                             @php
@@ -144,8 +150,11 @@
                             }
                             @endphp
                         </td>
+                        @if ( $nivel > 1) 
+
                         <td><button class="btn btn-primary" onclick="editar({{ $formato->id }})"><i class="fa-solid fa-pen-to-square"></i></button></td>
                         <td><button class="btn btn-success" onclick="eliminar({{ $formato->id }})"><i class="fa-solid fa-xmark"></i></button></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

@@ -23,6 +23,7 @@ class FormatoLlenoController extends Controller
 
         //obtener un array de los codigo de formato de los que eres responsable
         $usuario_logeado = Auth::user();
+        $nivel = Auth::user()->getUserNivel();
         if($usuario_logeado->tipo == "Administrador")
         {
             $formatos_llenos = FormatoLleno::all();
@@ -34,7 +35,8 @@ class FormatoLlenoController extends Controller
         }
         
         return view('documentos.formatos_llenos', [
-            'formatos_llenos' => $formatos_llenos
+            'formatos_llenos' => $formatos_llenos,
+            'nivel' => $nivel
         ]);
     }
 
