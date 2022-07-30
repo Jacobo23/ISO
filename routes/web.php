@@ -18,9 +18,9 @@ Route::get('/inicio', function () { return view('inicio'); })->name('inicio')->m
 
 // Pestaña INICIO
 Route::get('/inicio/actas_de_reunion','ActaDeReunionController@index')->middleware(['auth']);
-Route::post('/inicio/actas_de_reunion_guardar','ActaDeReunionController@store')->middleware(['auth']);
-Route::get('/inicio/actas_de_reunion/{acta_de_reunion}','ActaDeReunionController@show')->middleware(['auth']);
-Route::get('/inicio/actas_de_reunion_delete/{acta_de_reunion}','ActaDeReunionController@destroy')->middleware(['auth']);
+Route::post('/inicio/actas_de_reunion_guardar','ActaDeReunionController@store')->middleware(['auth','allow.only:Administrador']);
+Route::get('/inicio/actas_de_reunion/{acta_de_reunion}','ActaDeReunionController@show')->middleware(['auth','allow.only:Administrador']);
+Route::get('/inicio/actas_de_reunion_delete/{acta_de_reunion}','ActaDeReunionController@destroy')->middleware(['auth','allow.only:Administrador']);
 Route::get('/inicio/actas_de_reunion_view/{acta_de_reunion}','ActaDeReunionController@viewActaDeReunion')->middleware(['auth']);
 Route::get('/inicio/nosotros','NosotrosController@index')->middleware(['auth']);
 

@@ -16,8 +16,10 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
+            @if ( $nivel == 3) 
 
             <button class="btn btn-success" onclick="verForm()" >Nuevo <i class="fa-solid fa-plus"></i></button>
+            @endif
             <br>
             <div id="frm_nuevo" style="display:none;">
 
@@ -30,15 +32,15 @@
                         </div> -->
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Entidad:</label>
-                            <input type="text" class="form-control" id="txtEntidad" name="txtEntidad" value="">       
+                            <input type="text" class="form-control" id="txtEntidad" name="txtEntidad" value=""/>       
                         </div>
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Fecha:</label>
-                            <input type="date" class="form-control" id="txtFecha" name="txtFecha" value="">
+                            <input type="date" class="form-control" id="txtFecha" name="txtFecha" value=""/>
                         </div>
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Lugar:</label>
-                            <input type="text" class="form-control" id="txtLugar" name="txtLugar" value="">       
+                            <input type="text" class="form-control" id="txtLugar" name="txtLugar" value=""/>       
                         </div>
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Estado:</label>
@@ -49,7 +51,7 @@
                         </div>
                         <div class="col-lg-3 controlDiv" >
                             <label class="form-label">Archivo:</label>
-                            <input type="file" class="form-control" id="txtArchivo" name="file" accept="application/pdf">       
+                            <input type="file" class="form-control" id="txtArchivo" name="file" accept="application/pdf"/>       
                         </div>
                     </div>
                     
@@ -58,14 +60,14 @@
                         <textarea class="form-control" id="txtObjetivo" name="txtObjetivo" rows="2"></textarea>
                     </div>
 
-                    <input type="hidden" name="acta_id" id="acta_id" value="">
+                    <input type="hidden" name="acta_id" id="acta_id" value=""/>
 
                     
-                    <input type="submit" class="btn btn-success" style="float:right;" value="Guardar">
+                    <input type="submit" class="btn btn-success" style="float:right;" value="Guardar"/>
                     
                 </form>
                 <button class="btn btn-danger" onclick="ocultarForm()" style="float:right; position:relative; left:-5px;">Cancelar</button> 
-                <br>
+                <br/>
             </div>
 
             
@@ -92,8 +94,10 @@
                     <th scope="col">Objetivo</th>
                     <th scope="col">Estado</th>
                     <th scope="col"><i class="fa-solid fa-download"></i></th>
+                    @if ( $nivel == 3) 
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody id="tbl_actas">
@@ -106,8 +110,10 @@
                         <td>{{ $acta->objetivo }}</td>
                         <td>{{ $acta->estado }}</td>
                         <td><a href="/inicio/actas_de_reunion_view/{{ $acta->id }}"><i style="color: #CCC;font-size:35px;" class="fa-solid fa-file-pdf"></i></a></td>
+                        @if ( $nivel == 3) 
                         <td><button class="btn btn-success" onclick="editar({{ $acta->id }})"><i class="fa-solid fa-pen-to-square"></i></button></td>
                         <td><button class="btn btn-success" onclick="eliminar({{ $acta->id }})"><i class="fa-solid fa-xmark"></i></button></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

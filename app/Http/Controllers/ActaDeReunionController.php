@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActaDeReunion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ActaDeReunionController extends Controller
 {
@@ -16,9 +17,11 @@ class ActaDeReunionController extends Controller
     public function index()
     {
         //
+        $nivel = Auth::user()->getUserNivel();
         $actas_de_reunion = ActaDeReunion::all();
         return view('inicio.actas_de_reunion', [
-            'actas_de_reunion' => $actas_de_reunion
+            'actas_de_reunion' => $actas_de_reunion,
+            'nivel' => $nivel
         ]);
     }
 
