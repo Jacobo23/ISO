@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PerfilDePuesto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
 
 class PerfilDePuestoController extends Controller
 {
