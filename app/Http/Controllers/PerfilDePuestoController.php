@@ -16,8 +16,10 @@ class PerfilDePuestoController extends Controller
     public function index()
     {
         $perfiles = PerfilDePuesto::all();
+        $nivel = Auth::user()->getUserNivel();
         return view('liderazgo.perfiles_de_puesto', [
-            'perfiles__de_puesto' => $perfiles
+            'perfiles__de_puesto' => $perfiles,
+            'nivel' => $nivel
         ]);
     }
 

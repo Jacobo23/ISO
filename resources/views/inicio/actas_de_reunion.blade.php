@@ -71,6 +71,16 @@
             
 
             <h5 class="separtor">Registros</h5>
+            <div class="row">
+                <div class="col-lg-8">
+                </div>
+
+                <div class="col-lg-4 controlDiv" >
+                    <label class="form-label">Buscar:</label>
+                    <input type="text" class="form-control" id="txtQuickSearch" placeholder="Busca rapida" onkeyup="filtrar()"/>   
+                </div>
+            </div>
+            <br>
 
             <table class="table tbl-reg table-sm table-hover">
                 <thead>
@@ -86,7 +96,7 @@
                     <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbl_actas">
                     @foreach ($actas_de_reunion as $acta)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
@@ -162,6 +172,18 @@
         {
             showModal('Notificación','Registro eliminado!');
             window.location.reload();
+        });
+    }
+
+    function filtrar()
+    {
+        var value = $("#txtQuickSearch").val().toLowerCase();
+        
+        $("#tbl_actas tr").filter(function() 
+        {
+            $(this).toggle(
+                    $(this).text().toLowerCase().indexOf(value) > -1 
+                )
         });
     }
 
