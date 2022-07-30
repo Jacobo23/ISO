@@ -16,8 +16,10 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
+            @if ( $nivel == 3) 
 
             <button class="btn btn-success" onclick="verForm()" >Nuevo <i class="fa-solid fa-plus"></i></button>
+            @endif
             <br>
             <div id="frm_nuevo" style="display:none;">
 
@@ -26,34 +28,34 @@
                     <div class="row">
                         <div class="col-lg-3 controlDiv" >
                             <label class="form-label">Código:</label>
-                            <input type="text" class="form-control" id="txtCodigo" name="txtCodigo" value="" required>  
+                            <input type="text" class="form-control" id="txtCodigo" name="txtCodigo" value="" required/>  
                         </div>
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="txtNombre" name="txtNombre" value="" required>       
+                            <input type="text" class="form-control" id="txtNombre" name="txtNombre" value="" required/>       
                         </div>
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Revisión:</label>
-                            <input type="text" class="form-control" id="txtRev" name="txtRev" value="" required>       
+                            <input type="text" class="form-control" id="txtRev" name="txtRev" value="" required/>       
                         </div>
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Fecha:</label>
-                            <input type="date" class="form-control" id="txtFecha" name="txtFecha" value="" required>
+                            <input type="date" class="form-control" id="txtFecha" name="txtFecha" value="" required/>
                         </div>
                         <div class="col-lg-3 controlDiv" >
                             <label class="form-label">Archivo:</label>
-                            <input type="file" class="form-control" id="txtArchivo" name="file" accept="application/pdf">       
+                            <input type="file" class="form-control" id="txtArchivo" name="file" accept="application/pdf"/>       
                         </div>
                     </div>
 
-                    <input type="hidden" name="perfil_id" id="perfil_id" value="">
+                    <input type="hidden" name="perfil_id" id="perfil_id" value=""/>
 
-                    <br>
-                    <input type="submit" class="btn btn-success" style="float:right;" value="Guardar">
+                    <br/>
+                    <input type="submit" class="btn btn-success" style="float:right;" value="Guardar"/>
                     
                 </form>
                 <button class="btn btn-danger" onclick="ocultarForm()" style="float:right; position:relative; left:-5px;">Cancelar</button> 
-                <br>
+                <br/>
             </div>
 
             
