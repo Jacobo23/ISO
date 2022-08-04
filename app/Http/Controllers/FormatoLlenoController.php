@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Documento;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Responsabilidad;
+
 
 class FormatoLlenoController extends Controller
 {
@@ -33,10 +35,17 @@ class FormatoLlenoController extends Controller
             $codigos = Documento::where('responsable_id',$usuario_logeado->id)->pluck('codigo');
             $formatos_llenos = FormatoLleno::whereIn('codigo',$codigos)->get();
         }
+
+        $responsabilidades = Responsabilidad::where('usuario_id',Auth::user()->id)->where('status', 'Pendientes')->get();
+        if(Auth::user()->tipo == "Administrador")
+        {
+            $responsabilidades = Responsabilidad::where('status', 'Pendiente')->get();
+        }
         
         return view('documentos.formatos_llenos', [
             'formatos_llenos' => $formatos_llenos,
-            'nivel' => $nivel
+            'nivel' => $nivel,
+            'responsabilidades' => $responsabilidades
         ]);
     }
 
@@ -107,6 +116,34 @@ class FormatoLlenoController extends Controller
                     $i++;
                     $path_adjuntos_public = '/public/Archivos/Formatos_Llenos/' . $registro->id . '/' . 'adjuntos/' . $i . "." . $file->extension();    
                     Storage::put($path_adjuntos_public, file_get_contents($file));
+                }
+            }
+            //Responsabilidades
+            if(isset($request->txtResponsabilidad))
+            {
+                $responsabilidad = Responsabilidad::find($request->txtResponsabilidad);
+
+                if($responsabilidad)
+                {
+                
+                $responsabilidad->status = 'Completa';
+                $responsabilidad->documento = 'Frm:'.$registro->id;
+                $responsabilidad->save();
+                //si es periodica debe agregarse una nueva responsabilidad con los mismos datos pero distinta fecha
+                if($responsabilidad->periocidad != "")
+                {
+                    $responsabilidad2 = new Responsabilidad;
+                    $responsabilidad2->usuario_id = $responsabilidad->usuario_id;
+                    $responsabilidad2->tarea = $responsabilidad->tarea;
+                    $responsabilidad2->descripcion = $responsabilidad->descripcion;
+                    $responsabilidad2->periocidad = $responsabilidad->periocidad;
+                    $responsabilidad2->status = 'Pendiente';
+                    $responsabilidad2->documento = '';
+                    $responsabilidad2->fecha_de_expiracion = $responsabilidad->getSiguienteExpiracion();
+                    $responsabilidad2->save();
+                    //$responsabilidad->padre = 0;
+                }
+                
                 }
             }
         }

@@ -25,6 +25,9 @@
                 <div class="flex-shrink-0 flex items-center" style="position:relative; left:20px;">
                     <a class="btn btn-outline-secondary btn-sm" href="/notificaciones/notificaciones"> Notificaciones <i class="fa-solid fa-bell"></i></a>
                 </div>
+                <div class="flex-shrink-0 flex items-center" style="position:relative; left:50px; ">
+                    <a class="btn btn-outline-secondary btn-sm" href="/notificaciones/responsabilidades"> Responsabilidades <i class="fa-solid fa-list-check"></i></a>
+                </div>
 
                 
                 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Responsabilidad;
+
 
 class DocumentoController extends Controller
 {
@@ -21,6 +23,13 @@ class DocumentoController extends Controller
         $documentos = Documento::all();
         $nivel = Auth::user()->getUserNivel();
         $usuario_logeado = Auth::user();
+
+        $responsabilidades = Responsabilidad::where('usuario_id',Auth::user()->id)->where('status', 'Pendientes')->get();
+        if(Auth::user()->tipo == "Administrador")
+        {
+            $responsabilidades = Responsabilidad::where('status', 'Pendiente')->get();
+        }
+
         //$directorios = Storage::allDirectories("public");
         // $directorios = [
         //     "Actas_de_Reunion",
@@ -36,7 +45,8 @@ class DocumentoController extends Controller
             'usuarios' => $usuarios,
             'documentos' => $documentos,
             'nivel' => $nivel,
-            'usuario_logeado' => $usuario_logeado
+            'usuario_logeado' => $usuario_logeado,
+            'responsabilidades' => $responsabilidades
         ]);
     }
 
@@ -148,6 +158,33 @@ class DocumentoController extends Controller
                 }
                 Storage::put($path, file_get_contents($request->file('fileWM')));
                 
+            }
+            //Responsabilidades
+            if(isset($request->txtResponsabilidad))
+            {
+                $responsabilidad = Responsabilidad::find($request->txtResponsabilidad);
+
+                if($responsabilidad)
+                {
+                
+                $responsabilidad->status = 'Completa';
+                $responsabilidad->documento = 'Doc:'.$registro->id;
+                $responsabilidad->save();
+                //si es periodica debe agregarse una nueva responsabilidad con los mismos datos pero distinta fecha
+                if($responsabilidad->periocidad != "")
+                {
+                    $responsabilidad2 = new Responsabilidad;
+                    $responsabilidad2->usuario_id = $responsabilidad->usuario_id;
+                    $responsabilidad2->tarea = $responsabilidad->tarea;
+                    $responsabilidad2->descripcion = $responsabilidad->descripcion;
+                    $responsabilidad2->periocidad = $responsabilidad->periocidad;
+                    $responsabilidad2->status = 'Pendiente';
+                    $responsabilidad2->documento = '';
+                    $responsabilidad2->fecha_de_expiracion = $responsabilidad->getSiguienteExpiracion();
+                    $responsabilidad2->save();
+                    //$responsabilidad->padre = 0;
+                }
+                }
             }
         }
         return redirect('/documentos/documentos');

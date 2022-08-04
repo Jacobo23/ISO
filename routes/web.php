@@ -60,6 +60,12 @@ Route::post('/notificaciones/notificaciones_guardar','NotificationController@sto
 Route::get('/notificaciones/notificaciones_delete/{notificacion}','NotificationController@destroy')->middleware(['auth']);
 Route::get('/notificaciones/getUsuariosPorPerfil/{perfil}','NotificationController@getUsuariosPorPerfil')->middleware(['auth']);
 
+Route::get('/notificaciones/responsabilidades/','ResponsabilidadController@index')->middleware(['auth']);
+Route::post('/notificaciones/responsabilidades_guardar','ResponsabilidadController@store')->middleware(['auth']);
+Route::get('/notificaciones/responsabilidades_delete/{responsabilidad}','ResponsabilidadController@destroy')->middleware(['auth']);
+
+
+
 Route::get('/notificaciones/sendEmail/{notificacion}','NotificationController@sendNotification')->middleware(['auth']);
 
 //Carpeta compartida

@@ -64,6 +64,20 @@
                         <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" maxlenght="100"></textarea>
                     </div>
 
+                    <div class="row">
+
+                    <div class="col-lg-4 controlDiv" >
+                            <label class="form-label">Responsabilidades:</label>
+                            <select class="form-select" id = "txtResponsabilidad" name = "txtResponsabilidad">
+                                <option value=""></option>
+                            @foreach ($responsabilidades as $responsabilidad)
+                                <option value="{{ $responsabilidad->id }}">{{ $responsabilidad->id }} | {{ $responsabilidad->tarea }} | {{ explode(" ",$responsabilidad->fecha_de_expiracion)[0] }}</option>
+                            @endforeach
+                            </select>      
+                        </div>
+
+                    </div>
+
                     <input type="hidden" name="formato_lleno_id" id="formato_lleno_id" value="">
 
                     

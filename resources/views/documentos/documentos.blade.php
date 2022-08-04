@@ -29,15 +29,15 @@
                     <div class="row">
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Código:</label>
-                            <input type="text" class="form-control" id="txtCodigo" name="txtCodigo" value="">  
+                            <input type="text" class="form-control" id="txtCodigo" name="txtCodigo" value=""/>  
                         </div>
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Revisión:</label>
-                            <input type="text" class="form-control" id="txtRev" name="txtRev" value="">       
+                            <input type="text" class="form-control" id="txtRev" name="txtRev" value=""/>       
                         </div>
                         <div class="col-lg-5 controlDiv" >
                             <label class="form-label">Titulo:</label>
-                            <input type="text" class="form-control" id="txtTitulo" name="txtTitulo" value="">       
+                            <input type="text" class="form-control" id="txtTitulo" name="txtTitulo" value=""/>       
                         </div>
                         
                     </div>
@@ -62,7 +62,7 @@
 
                         <div class="col-lg-2 controlDiv" >
                             <label class="form-label">Fecha:</label>
-                            <input type="date" class="form-control" id="txtFecha" name="txtFecha" value="">
+                            <input type="date" class="form-control" id="txtFecha" name="txtFecha" value=""/>
                         </div>
 
                         <!-- <div class="col-lg-5 controlDiv" >
@@ -79,7 +79,7 @@
 
                         <div class="col-lg-1 controlDiv" >
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="chkActivo" id="chkActivo" name="chkActivo">
+                                <input class="form-check-input" type="checkbox" value="chkActivo" id="chkActivo" name="chkActivo"/>
                                 <label class="form-check-label">Activo</label>
                             </div>      
                         </div>
@@ -89,33 +89,46 @@
 
                         <div class="col-lg-4 controlDiv" >
                             <label class="form-label">Archivo Final: <i class="fa-solid fa-file-pdf"></i></label>
-                            <input type="file" class="form-control" id="txtArchivo" name="file">       
+                            <input type="file" class="form-control" id="txtArchivo" name="file"/>       
                         </div>
 
                         <div class="col-lg-4 controlDiv" >
                             <label class="form-label">Archivo Fuente: <i class="fa-solid fa-file-word"></i> <i class="fa-solid fa-file-excel"></i></label>
-                            <input type="file" class="form-control" id="txtArchivoFuente" name="fileSource">       
+                            <input type="file" class="form-control" id="txtArchivoFuente" name="fileSource"/>       
                         </div>
 
                         <div class="col-lg-4 controlDiv" >
                             <label class="form-label">Archivo marca de agua:</label>
-                            <input type="file" class="form-control" id="txtArchivoMarcaDeAgua" name="fileWM" accept="application/pdf">       
+                            <input type="file" class="form-control" id="txtArchivoMarcaDeAgua" name="fileWM" accept="application/pdf"/>       
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                    <div class="col-lg-4 controlDiv" >
+                            <label class="form-label">Responsabilidades:</label>
+                            <select class="form-select" id = "txtResponsabilidad" name = "txtResponsabilidad">
+                                <option value=""></option>
+                            @foreach ($responsabilidades as $responsabilidad)
+                                <option value="{{ $responsabilidad->id }}">{{ $responsabilidad->id }} | {{ $responsabilidad->tarea }} | {{ explode(" ",$responsabilidad->fecha_de_expiracion)[0] }}</option>
+                            @endforeach
+                            </select>      
                         </div>
 
                     </div>
 
 
 
-                    <input type="hidden" name="documento_id" id="documento_id" value="">
+                    <input type="hidden" name="documento_id" id="documento_id" value=""/>
 
                     <!-- RUTA DEL ARCHIVO -->
-                    <br>
+                    <br/>
 
-                    <input type="submit" class="btn btn-success" style="float:right;" value="Guardar">
+                    <input type="submit" class="btn btn-success" style="float:right;" value="Guardar"/>
                     
                 </form>
                 <button class="btn btn-danger" onclick="ocultarForm()" style="float:right; position:relative; left:-5px;">Cancelar</button> 
-                <br>
+                <br/>
             </div>
 
             
