@@ -85,11 +85,11 @@ class ResponsabilidadController extends Controller
     }
     public function destroy(Responsabilidad $responsabilidad)
     {
-        $hijos = Responsabilidad::where('padre',$responsabilidad->id)->get();
-        foreach ($hijos as $hijo) 
-        {
-            $hijo->delete();
-        }
+        // $hijos = Responsabilidad::where('padre',$responsabilidad->id)->get();
+        // foreach ($hijos as $hijo) 
+        // {
+        //     $hijo->delete();
+        // }
         $responsabilidad->delete();
     }
 }
