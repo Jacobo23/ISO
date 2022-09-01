@@ -49,7 +49,7 @@
                                 <option value="trimestral">trimestral</option>
                                 <option value="cuatrimestral">cuatrimestral</option>
                                 <option value="semestral">semestral</option>
-                                <option value="anual">anuel</option>
+                                <option value="anual">anual</option>
                             </select>      
                         </div>
                     </div>

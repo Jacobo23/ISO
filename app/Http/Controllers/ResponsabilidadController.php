@@ -20,7 +20,7 @@ class ResponsabilidadController extends Controller
      */
     public function index()
     {
-        $responsabilidades = Responsabilidad::where('usuario_id',Auth::user()->id)->where('status', 'Pendientes')->get();
+        $responsabilidades = Responsabilidad::where('usuario_id',Auth::user()->id)->where('status', 'Pendiente')->get();
         $nivel = Auth::user()->getUserNivel();
         $fecha_actual = date("Y-m-d H:i:s");
         if(Auth::user()->tipo == "Administrador")

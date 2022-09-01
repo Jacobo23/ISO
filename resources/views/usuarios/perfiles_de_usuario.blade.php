@@ -72,7 +72,7 @@
             <table class="table tbl-reg table-sm table-hover">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">id</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Perfil</th>
                     <th scope="col">Tipo</th>
@@ -85,7 +85,7 @@
                 <tbody>
                     @foreach ($usuarios as $usuario)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $usuario->id }}</td>
                         <td>{{ $usuario->name }}</td>
                         <td>{{ $usuario->perfil }}</td>
                         <td>{{ $usuario->tipo }}</td>
