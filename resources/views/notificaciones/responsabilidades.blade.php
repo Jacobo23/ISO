@@ -116,6 +116,16 @@
             
 
             <h5 class="separtor">Responsabilidades asignadas</h5>
+            <div class="row">
+                <div class="col-lg-8">
+                </div>
+
+                <div class="col-lg-4 controlDiv" >
+                    <label class="form-label">Buscar:</label>
+                    <input type="text" class="form-control" id="txtQuickSearch" placeholder="Busca rapida" onkeyup="filtrar()"/>   
+                </div>
+            </div>
+            <br>
 
             <table class="table tbl-reg table-sm table-hover">
                 <thead>
@@ -132,7 +142,7 @@
                     <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbl_respos">
                     @foreach ($responsabilidades as $responsabilidad)
                     <tr @if ($responsabilidad->status == "Expirada") class="table-danger" @endif>
                         <td>{{ $responsabilidad->id }}</td>
@@ -295,6 +305,18 @@
         {
             showModal('Notificación','Registro eliminado!');
             window.location.reload();
+        });
+    }
+
+    function filtrar()
+    {
+        var value = $("#txtQuickSearch").val().toLowerCase();
+        
+        $("#tbl_respos tr").filter(function() 
+        {
+            $(this).toggle(
+                    $(this).text().toLowerCase().indexOf(value) > -1 
+                )
         });
     }
 
