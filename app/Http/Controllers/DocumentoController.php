@@ -50,6 +50,37 @@ class DocumentoController extends Controller
         ]);
     }
 
+    public function historial()
+    {
+        // $usuarios = User::where('tipo','Responsable')->orWhere('tipo','Administrador')->get();
+        // $documentos = Documento::all();
+        // $nivel = Auth::user()->getUserNivel();
+        $usuario_logeado = Auth::user();
+
+        // $responsabilidades = Responsabilidad::where('usuario_id',Auth::user()->id)->where('status', 'Pendientes')->get();
+        // if(Auth::user()->tipo == "Administrador")
+        // {
+        //     $responsabilidades = Responsabilidad::where('status', 'Pendiente')->get();
+        // }
+
+        //$directorios = Storage::allDirectories("public");
+        // $directorios = [
+        //     "Actas_de_Reunion",
+        //     "Perfiles_de_Puesto",
+        //     "Formatos_Llenos",
+        //     "SGC",
+        //     "SGC/Instrucciones",
+        //     "SGC/Procedimientos",
+        //     "SGC/Seguridad",
+        //     "SGC/Calidad",
+        // ];
+        return view('documentos.historial', [
+            'usuario_logeado' => $usuario_logeado
+        ]);
+    }
+
+    
+
 
     public function getDirectoryArrays($rutas)
     {

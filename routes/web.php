@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('inicio'); })->middleware(['auth']);
-Route::get('/inicio', function () { return view('inicio'); })->name('inicio')->middleware(['auth']);
+Route::get('/inicion', function () { return view('inicio'); })->name('inicio')->middleware(['auth']);
 
 // Pestaña INICIO
 Route::get('/inicio/actas_de_reunion','ActaDeReunionController@index')->middleware(['auth']);
@@ -46,6 +45,7 @@ Route::post('/documentos/formatos_llenos_guardar','FormatoLlenoController@store'
 Route::get('/documentos/formatos_llenos/{formato}','FormatoLlenoController@show')->middleware(['auth']);
 Route::get('/documentos/formatos_llenos_delete/{formato}','FormatoLlenoController@destroy')->middleware(['auth']);
 Route::get('/documentos/formatos_llenos_view/{formato}','FormatoLlenoController@viewFormatoLlenoDeReunion')->middleware(['auth']);
+Route::get('/documentos/documentos_historial','DocumentoController@historial')->middleware(['auth']);
 
 // Pestaña LIDERAZGO
 Route::get('/liderazgo/perfiles_de_puesto','PerfilDePuestoController@index')->middleware(['auth']);

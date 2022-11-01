@@ -58,7 +58,7 @@
     <div class="dropdown">
     <button class="dropbtn">Documentos</button>
     <div class="dropdown-content">
-        <a href="/documentos/documentos_historial"><i class="fa-solid fa-magnifying-glass"></i> Lista Maestra </a>
+        <a href="/documentos/documentos"><i class="fa-solid fa-magnifying-glass"></i> Lista Maestra </a>
         <a href="/documentos/formatos_llenos"><i class="fa-solid fa-angle-right"></i> Formatos llenos</a>
     </div>
     </div>
